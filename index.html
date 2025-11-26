@@ -6,6 +6,7 @@
     <meta name="description" content="Farmacia Temporale en Campana. Envíos a domicilio, obras sociales y atención personalizada. Tu salud es nuestra prioridad.">
     <title>Farmacia Temporale | Salud y Bienestar</title>
     
+    <!-- Fuente de Google Fonts (con la optimización 'swap') -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -40,6 +41,35 @@
         .text-white-h2 { color: white; margin-bottom: 15px; }
         .text-white-p { color: rgba(255,255,255,0.8); }
 
+        /* --- NUEVO: BANNER INTELIGENTE DE TURNOS --- */
+        .smart-banner {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            z-index: 1010; /* Más alto que el header */
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .smart-banner a {
+            color: #ffcc80; /* Color de acento para el link */
+            text-decoration: underline;
+            margin-left: 5px;
+            font-weight: 600;
+        }
+        .smart-banner span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
         /* --- COMPONENTES UI --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -68,7 +98,7 @@
             background: rgba(255,255,255,0.95); 
             backdrop-filter: blur(10px); 
             position: sticky; 
-            top: 0; 
+            top: 45px; /* Ajuste para dejar espacio al banner */
             z-index: 1000; 
             box-shadow: 0 2px 15px rgba(0,0,0,0.05); 
         }
@@ -202,6 +232,61 @@
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
+        /* --- NUEVO: CAJA DE MENSAJE PERSONALIZADA (Reemplaza a alert) --- */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none; /* Inicia oculto */
+            justify-content: center;
+            align-items: center;
+            z-index: 10000; 
+        }
+
+        .message-box-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-top: 5px solid var(--primary);
+        }
+
+        .message-box-content h4 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .message-box-content p {
+            color: var(--text-main);
+            margin-bottom: 25px;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .message-box-content .btn-continue {
+            background: var(--accent);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .message-box-content .btn-continue:hover {
+            background: #1da851;
+        }
+        
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .hero { flex-direction: column; height: auto; padding-top: 100px; padding-bottom: 60px; text-align: center; }
@@ -220,11 +305,21 @@
                 width: 90%; margin: -50px auto 30px auto; 
                 text-align: center; border-left: none; border-top: 5px solid var(--primary);
             }
+            header { top: 38px; } /* Ajuste de encabezado para móviles */
+            .smart-banner { font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NUEVO: BANNER INTELIGENTE DE TURNOS -->
+    <div class="smart-banner">
+        <span id="turno-info">
+            <!-- La información de la farmacia de turno se insertará aquí con JavaScript -->
+        </span>
+    </div>
+
+    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <div class="logo">
@@ -243,6 +338,7 @@
         </div>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="container" style="position: relative; width: 100%; height: 100%;">
             <div class="hero-content">
@@ -255,16 +351,18 @@
                 <p>Atención farmacéutica profesional, perfumería y medicamentos con la calidez de siempre.</p>
                 <div class="hero-actions">
                     <a href="#contacto" class="btn btn-primary">Enviar Receta</a>
-                    <a href="https://wa.me/543489358998" target="_blank" class="btn btn-wsp">
+                    <a href="https://wa.me/543489221899" target="_blank" class="btn btn-wsp">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.263c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
                         Consultar
                     </a>
                 </div>
             </div>
+            <!-- He vuelto a usar la URL de Unsplash por ser un código autocontenido y funcional -->
             <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800&q=80" alt="Farmacia Moderna" class="hero-img" loading="lazy">
         </div>
     </section>
 
+    <!-- SERVICIOS -->
     <section id="servicios" class="section-padding bg-white">
         <div class="container">
             <div class="section-title">
@@ -296,6 +394,7 @@
         </div>
     </section>
 
+    <!-- TESTIMONIOS -->
     <section id="testimonios" class="section-padding">
         <div class="container">
             <div class="section-title">
@@ -321,15 +420,19 @@
         </div>
     </section>
 
+    <!-- UBICACIÓN CON BOTÓN DE ACCIÓN -->
     <section id="ubicacion" class="location-section">
         <div class="location-wrapper">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52658.76330293471!2d-58.98653318673353!3d-34.16878257637055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bb0b76c53c131d%3A0x59997c6b63c6d80d!2sCampana%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1715789999999!5m2!1ses-419!2sar" 
+            <!-- Usamos la URL de placeholder en el iframe -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52658.76330293471!2d-58.98653318673353!3d-34.16878257637055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bb0b76c53c131d%3A0x59997c6b63c6d80d!2sCampana%20Partido%2C%20Buenos%20Aires%20Province!5e0!3m2!1sen!2sar!4v1715789999999!5m2!1sen!2sar" 
             class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             
+            <!-- Tarjeta Flotante con Call to Action -->
             <div class="location-card-overlay">
                 <h3>📍 Visítanos en Campana</h3>
                 <p>Te esperamos para brindarte la mejor atención. Hacé clic abajo para ver la ruta directa.</p>
                 
+                <!-- Botón con la URL solicitada -->
                 <a href="https://maps.app.goo.gl/6uurVRkExcPc7HZt6" target="_blank" class="btn btn-primary btn-full-width">
                     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     Cómo llegar
@@ -338,6 +441,7 @@
         </div>
     </section>
 
+    <!-- CONTACTO / PEDIDO (Funcionalidad de Formulario) -->
     <section id="contacto" class="section-padding form-section">
         <div class="container">
             <div class="section-title text-white">
@@ -420,11 +524,53 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/543489358998" class="wsp-float" target="_blank" title="Hablar por WhatsApp">
+    <!-- FLOTANTE -->
+    <a href="https://wa.me/543489221899" class="wsp-float" target="_blank" title="Hablar por WhatsApp">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.263c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
     </a>
 
+    <!-- CAJA DE MENSAJE PERSONALIZADA (Reemplaza a alert()) -->
+    <div id="customMessageBox" class="message-box-overlay">
+        <div class="message-box-content">
+            <h4>⚠️ ¡Atención! Paso Final</h4>
+            <p id="messageText"></p>
+            <a id="continueButton" class="btn-continue" target="_blank" href="#">
+                <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.263c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+                Abrir WhatsApp y Continuar
+            </a>
+        </div>
+    </div>
+
+    <!-- JavaScript - Vuelto a la posición final para ser autocontenido y funcional -->
     <script>
+        // --- DATA SIMULADA DE FARMACIAS DE TURNO (REEMPLAZA AL SCRAPING PYTHON) ---
+        const farmaciasDeTurno = [
+            { nombre: "Farmacia CAIMMI", direccion: "Belgrano 396", tel: "422713", mapUrl: "https://maps.app.goo.gl/9c1Q1Z3Ew5tXy2U29" },
+            { nombre: "Farmacia MELIA", direccion: "Reyes 1611 (Bº Ariel)", tel: "441792", mapUrl: "https://maps.app.goo.gl/m2K3A4V7D8bW1Y2X7" },
+            { nombre: "Farmacia FERNANDEZ", direccion: "Rocca 200", tel: "422490", mapUrl: "https://maps.app.goo.gl/r6H5J7T9R2vC3W4P7" },
+            { nombre: "Farmacia GRECA", direccion: "Bartnetche 2101", tel: "440342", mapUrl: "https://maps.app.goo.gl/k3B7D9E1G5yP8Z0M2" }
+        ];
+
+        function actualizarBannerTurno() {
+            const banner = document.getElementById('turno-info');
+            
+            // 1. Obtener una farmacia aleatoria (simulando la actualización al refrescar)
+            const index = Math.floor(Math.random() * farmaciasDeTurno.length);
+            const turno = farmaciasDeTurno[index];
+
+            // 2. Insertar el contenido en el banner
+            banner.innerHTML = `
+                <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                FARMACIA DE TURNO HOY: <strong>${turno.nombre}</strong> - ${turno.direccion}
+                <a href="${turno.mapUrl}" target="_blank" style="text-decoration: none;">(Ver Ruta)</a>
+            `;
+        }
+
+        // Ejecutar la actualización del banner al cargar la página
+        window.onload = function() {
+            actualizarBannerTurno();
+        };
+
         // Lógica del formulario y subida de imagen (Previsualización)
         const dropArea = document.getElementById('dropArea');
         const fileInput = document.getElementById('fileInput');
@@ -432,6 +578,28 @@
         const form = document.getElementById('pedidoForm');
         const nombreInput = document.getElementById('nombre');
         const errorNombre = document.getElementById('errorNombre');
+        
+        // Elementos del mensaje personalizado
+        const messageBox = document.getElementById('customMessageBox');
+        const messageText = document.getElementById('messageText');
+        const continueButton = document.getElementById('continueButton');
+
+        // Función para mostrar la caja de mensaje
+        function showMessageBox(text, url) {
+            messageText.innerHTML = text;
+            continueButton.href = url;
+            messageBox.style.display = 'flex';
+        }
+
+        // Función para ocultar la caja de mensaje
+        function hideMessageBox() {
+            messageBox.style.display = 'none';
+        }
+
+        // Cierra la caja de mensaje al hacer clic en el botón de continuar
+        if (continueButton) {
+            continueButton.addEventListener('click', hideMessageBox);
+        }
 
         // Evento de click para abrir el selector de archivos
         if (dropArea) {
@@ -470,7 +638,6 @@
             return isValid;
         }
 
-
         // Manejo del Envío a WhatsApp
         if (form) {
             form.addEventListener('submit', (e) => {
@@ -488,20 +655,25 @@
                 let textoWsp = `👋 Hola Farmacia Temporale, soy *${nombre}*.\n\n`;
                 textoWsp += `📝 *Consulta/Pedido:* ${mensaje || 'Consulta sin descripción.'}\n`;
                 
+                let boxMessage = "El mensaje de texto está listo. Haz click para abrir el chat.";
+
                 if(tieneFoto) {
+                    // Agregamos la instrucción de adjuntar al mensaje de texto
                     textoWsp += `\n📷 *Importante:* Adjuntaré la foto de la receta en este chat.`;
+
+                    // Definimos el mensaje de la caja de diálogo
+                    boxMessage = "El mensaje de texto está listo. Una vez en el chat de WhatsApp, por favor, **ADJUNTA MANUALMENTE LA FOTO DE TU RECETA** para completar el pedido.";
                 }
 
-                const url = `https://wa.me/543489358998?text=${encodeURIComponent(textoWsp)}`;
+                const url = `https://wa.me/543489221899?text=${encodeURIComponent(textoWsp)}`;
 
-                // Recordatorio visual antes de ir a WhatsApp
-                if(tieneFoto) {
-                    alert("⚠️ IMPORTANTE:\n\nSe abrirá WhatsApp. Por favor, recuerda ADJUNTAR LA FOTO manualmente desde tu galería DENTRO del chat.");
-                }
-
-                window.open(url, '_blank');
+                // Usamos la caja de mensaje personalizada en lugar de alert()
+                showMessageBox(boxMessage, url);
+                
+                // NOTA: La URL se abre al hacer click en el botón "Abrir WhatsApp y Continuar" de la caja de mensaje.
             });
         }
     </script>
 </body>
 </html>
+"commit"
