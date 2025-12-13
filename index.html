@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Farmacia Schmidt - Atención personalizada, turnos 24hs y envíos a domicilio.">
-    <title> Farmacia Schmidt | Villa Rosa</title>
+    <meta name="description" content="Farmacia Schmidt - Moreno 1240, Villa Rosa. Turnos 24hs, atención personalizada y envíos a domicilio.">
+    <title>Farmacia Schmidt | Moreno 1240 | Villa Rosa</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -243,17 +243,27 @@
     <section id="ubicacion" class="section-padding" style="background:white">
         <div class="container">
             <div class="section-title"><h2>Visítanos</h2></div>
+            
+            <!-- Botón grande centrado encima del mapa -->
+            <div style="text-align:center;margin-bottom:30px;">
+                <a href="https://maps.app.goo.gl/kGCT1wWJ4c4Gd1dv6" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:16px 40px;">
+                    Ir a la ubicación en Google Maps
+                </a>
+            </div>
+
             <div class="location-wrapper">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.887059337295!2d-59.00015668476862!3d-34.16875098058083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDEwJzA3LjUiUyA1OcKwMDAnMDIuNSJX!5e0!3m2!1ses!2sar!4v1700000000000" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.247!2d-58.8715073!3d-34.4159183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9da3e0c29819%3A0x8b189be2f9b61880!2sFarmacia%20Schmidt%2C%20Moreno%201240%2C%20B1631%20Villa%20Rosa%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1736733927" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="location-card">
                     <h3 style="color:var(--primary);margin-bottom:15px">Farmacia Schmidt</h3>
                     <p style="margin-bottom:8px;font-weight:600;line-height:1.4">
-                        Ubicación en Villa Rosa<br>
+                        Moreno 1240<br>
                         <span style="font-weight:400;color:#64748b">Villa Rosa, Buenos Aires</span>
                     </p>
                     <p style="margin-bottom:20px;font-size:0.9rem;color:#64748b">
-                        Lunes a viernes: 8:30 a 13:00 hs y de 16:30 a 20:30 hs<br>
-                        Sábado: 8:30 a 13:00 y de 16:30 a 20:30 hs
+                        Lunes a miércoles y viernes: 8:30 a 20:30 hs<br>
+                        Jueves: Abierto 24 hs<br>
+                        Sábado: 8:30 a 13:00 hs y 16:30 a 20:30 hs<br>
+                        Domingo: Abierto 24 hs
                     </p>
                     <a href="https://maps.app.goo.gl/kGCT1wWJ4c4Gd1dv6" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center">
                         Cómo llegar ahora
@@ -341,17 +351,24 @@
             const minutes = now.getMinutes();
             const current = hours * 60 + minutes;
 
-            const morningOpen = 8*60 + 30;
-            const morningClose = 12*60 + 30;
-            const afternoonOpen = 16*60;
-            const afternoonClose = 20*60;
-            const saturdayClose = 12*60 + 30;
-
             let isOpen = false;
-            if (day >= 1 && day <= 5) {
-                if ((current >= morningOpen && current < morningClose) || (current >= afternoonOpen && current < afternoonClose)) isOpen = true;
-            } else if (day === 6) {
-                if (current >= morningOpen && current < saturdayClose) isOpen = true;
+
+            if (day === 0 || day === 4) { // Domingo o Jueves: 24hs
+                isOpen = true;
+            } else if (day === 6) { // Sábado
+                const morningOpen = 8 * 60 + 30;
+                const morningClose = 13 * 60;
+                const afternoonOpen = 16 * 60 + 30;
+                const afternoonClose = 20 * 60 + 30;
+                if ((current >= morningOpen && current < morningClose) || (current >= afternoonOpen && current < afternoonClose)) {
+                    isOpen = true;
+                }
+            } else { // Lunes, Martes, Miércoles, Viernes
+                const openTime = 8 * 60 + 30;
+                const closeTime = 20 * 60 + 30;
+                if (current >= openTime && current < closeTime) {
+                    isOpen = true;
+                }
             }
 
             document.getElementById('status-badge-container').innerHTML = isOpen
@@ -431,7 +448,7 @@
         function fallbackBanner(isOpen) {
             const bannerText = document.getElementById('banner-text');
             const msg = isOpen 
-                ? 'Estamos ABIERTOS hasta las 20:00 hs' 
+                ? 'Estamos ABIERTOS hasta las 20:30 hs' 
                 : 'Estamos CERRADOS · Consultá turnos por WhatsApp';
             bannerText.innerHTML = msg;
         }
@@ -457,6 +474,7 @@
 </body>
 </html>
 "commit"
+
 
 
 
