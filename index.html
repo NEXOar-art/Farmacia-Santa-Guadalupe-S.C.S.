@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Farmacia Schmidt - Moreno 1240, Villa Rosa. Turnos 24hs, atención personalizada y envíos a domicilio.">
-    <title>Farmacia Schmidt| Moreno 1240| Villa Rosa</title>
+    <meta name="description" content="Farmacia Schmidt - Atención personalizada, turnos 24hs y envíos a domicilio.">
+    <title>Farmacia Schmidt | Campana</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -31,11 +31,45 @@
         .section-title h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
 
         /* BANNER TURNO */
-        .smart-banner { background: var(--primary-dark); color: white; min-height: 48px; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: 500; position: sticky; top: 0; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.15); padding: 8px 0; }
-        .banner-content { display: flex; align-items: center; gap: 12px; opacity: 0; transform: translateY(5px); transition: all 0.5s ease-out; text-align: center; padding: 0 15px; }
+        .smart-banner { 
+            background: var(--primary-dark); 
+            color: white; 
+            min-height: 48px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            position: sticky; 
+            top: 0; 
+            z-index: 2000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15); 
+            padding: 10px 0; 
+        }
+        .banner-content { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            opacity: 0; 
+            transform: translateY(5px); 
+            transition: all 0.5s ease-out; 
+            text-align: center; 
+            padding: 0 15px; 
+            max-width: 100%;
+        }
         .banner-content.visible { opacity: 1; transform: translateY(0); }
-        .status-dot { width: 10px; height: 10px; background: #25D366; border-radius: 50%; animation: pulse-green 2s infinite; box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
-        @keyframes pulse-green { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37,211,102,0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+        .status-dot { 
+            width: 10px; height: 10px; 
+            background: #25D366; 
+            border-radius: 50%; 
+            animation: pulse-green 2s infinite; 
+            box-shadow: 0 0 0 0 rgba(37,211,102,0.7); 
+        }
+        @keyframes pulse-green { 
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37,211,102,0); } 
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37,211,102,0); } 
+        }
 
         header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); position: sticky; top: 48px; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; height: 72px; }
@@ -103,7 +137,7 @@
             .form-wrapper { flex-direction: column; }
             .location-card { position: relative; top: 0; left: 0; transform: none; width: 100%; max-width: none; margin: 20px; }
             nav { display: none; }
-            .smart-banner { font-size: 0.85rem; flex-direction: column; padding: 10px; }
+            .smart-banner { font-size: 0.82rem; flex-direction: column; padding: 12px 10px; line-height: 1.4; }
         }
     </style>
 </head>
@@ -124,7 +158,6 @@
                     <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM10 17H8V13H4V11H8V7H10V11H14V7H16V11H20V13H16V17H14V13H10V17Z"/>
                 </svg>
                 Farmacia Schmidt
-
             </div>
             <nav>
                 <ul>
@@ -145,7 +178,7 @@
                 <p>Envíos rápidos, atención profesional y todas las obras sociales. Hacé tu pedido online.</p>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
                     <a href="#contacto" class="btn btn-primary">Hacer Pedido</a>
-                    <a href="https://wa.me/541164264067" target="_blank" class="btn btn-wsp">Consultar por WhatsApp</a>
+                    <a href="https://api.whatsapp.com/send?phone=+541164264067&text=Hola%20Farmacia%20Schmidt!!!" target="_blank" class="btn btn-wsp">Consultar por WhatsApp</a>
                 </div>
             </div>
             <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800&q=80" alt="Farmacia Schmidt" class="hero-img">
@@ -199,7 +232,7 @@
                 </div>
                 <div class="card-style testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <span class="quote">"Muy buena ubicación en Villa Rosa y precios competitivos en perfumería. Siempre me atienden con una sonrisa."</span>
+                    <span class="quote">"Muy buena ubicación en Campana y precios competitivos en perfumería. Siempre me atienden con una sonrisa."</span>
                     <span class="client-name">- Sofía Lerena</span>
                 </div>
             </div>
@@ -211,16 +244,16 @@
         <div class="container">
             <div class="section-title"><h2>Visítanos</h2></div>
             <div class="location-wrapper">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.887059337295!2d-59.00015668476862!3d-34.16875098058083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9c8f8f8f8f8f%3A0x9f8e8d8e8f8e8d8e!2sLuciano%20Reyes%201611%2C%20Campana%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1700000000000" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.887059337295!2d-59.00015668476862!3d-34.16875098058083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDEwJzA3LjUiUyA1OcKwMDAnMDIuNSJX!5e0!3m2!1ses!2sar!4v1700000000000" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="location-card">
                     <h3 style="color:var(--primary);margin-bottom:15px">Farmacia Schmidt</h3>
                     <p style="margin-bottom:8px;font-weight:600;line-height:1.4">
-                        Moreno 1240,<br>
-                        <span style="font-weight:400;color:#64748b"> Villa Rosa, Buenos Aires</span>
+                        Ubicación en Campana<br>
+                        <span style="font-weight:400;color:#64748b">Campana, Buenos Aires</span>
                     </p>
                     <p style="margin-bottom:20px;font-size:0.9rem;color:#64748b">
-                        Lunes a viernes: 8:30 a 13:00 hs y de 16:30 a 20:30 hs<br>
-                        Sábado: 8:30 a 13:00 hs y de 16:30 a 20:30 hs
+                        Lunes a viernes: 8:30 a 12:30 hs y de 16:00 a 20:00 hs<br>
+                        Sábado: 8:30 a 12:30 hs
                     </p>
                     <a href="https://maps.app.goo.gl/kGCT1wWJ4c4Gd1dv6" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center">
                         Cómo llegar ahora
@@ -253,7 +286,7 @@
                         </div>
                         <div class="input-group">
                             <label style="display:block;margin-bottom:5px;font-weight:500">Tu Celular (WhatsApp)</label>
-                            <input type="tel" id="celular" class="input-field" placeholder="3489 15xxxxxx (solo números)" required pattern="[0-9]{10,15}">
+                            <input type="tel" id="celular" class="input-field" placeholder="11 12345678 (solo números)" required pattern="[0-9]{10,15}">
                         </div>
                         <div class="input-group">
                             <label style="display:block;margin-bottom:5px;font-weight:500">¿Qué necesitas?</label>
@@ -273,7 +306,7 @@
     </footer>
 
     <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://wa.me/541164264067" class="wsp-float" target="_blank" title="Chat WhatsApp">
+    <a href="https://api.whatsapp.com/send?phone=+541164264067&text=Hola%20Farmacia%20Schmidt!!!" class="wsp-float" target="_blank" title="Chat WhatsApp">
         <svg width="30" height="30" fill="white" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.263c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
         </svg>
@@ -295,15 +328,9 @@
     </div>
 
     <script>
-        const CONFIG = {
-            PROXY: 'https://api.allorigins.win/get?url=',
-            URL_TURNO_1: 'https://m.campananoticias.com/farmacias',
-            URL_TURNO_2: 'https://www.encampana.com/cat.php?categoria=Farmacias-de-Turno'
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
             updateOpeningStatus();
-            logicScrapingBanner();
+            loadFarmaciasDeTurno();
             logicFormWhatsApp();
         });
 
@@ -333,87 +360,85 @@
             return isOpen;
         }
 
-        async function logicScrapingBanner() {
+        async function loadFarmaciasDeTurno() {
             const bannerText = document.getElementById('banner-text');
             const bannerContent = document.getElementById('banner-content');
             const isOpen = updateOpeningStatus();
-            let allText = '';
 
             try {
-                let res = await fetch(CONFIG.PROXY + encodeURIComponent(CONFIG.URL_TURNO_1));
-                if (res.ok) { const data = await res.json(); allText = data.contents; }
-            } catch(e) {}
-            if (!allText) {
-                try {
-                    let res = await fetch(CONFIG.PROXY + encodeURIComponent(CONFIG.URL_TURNO_2));
-                    if (res.ok) { const data = await res.json(); allText = data.contents; }
-                } catch(e) {}
-            }
+                const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://m.campananoticias.com/farmacias'));
+                const data = await response.json();
+                const html = data.contents;
 
-            if (!allText) { fallbackBanner(isOpen); return; }
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
 
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(allText, 'text/html');
-            const bodyText = doc.body.innerText.toLowerCase();
-            let found = [];
+                const farmacias = [];
+                const items = doc.querySelectorAll('.farmacia, .direccion, .telefono');
 
-            const boxes = doc.querySelectorAll('.box, .item, .farmacia, article, .entry');
-            if (boxes.length > 0) {
-                boxes.forEach(box => {
-                    const lines = box.innerText.trim().split('\n').map(l => l.trim()).filter(l => l);
-                    if (lines.length >= 1) {
-                        let name = lines[0].toUpperCase().replace(/farmacia|turno|de|24\s*hs/gi, '').trim();
-                        let address = lines[1] || '';
-                        const is24hs = bodyText.includes('24') && box.innerText.toLowerCase().includes('24');
-                        if (name && name.length < 60) found.push({name, address, is24hs});
+                let current = {};
+                items.forEach(el => {
+                    const text = el.textContent.trim();
+                    const className = el.className;
+
+                    if (className.includes('farmacia')) {
+                        if (current.nombre) farmacias.push(current);
+                        current = { nombre: text.replace(/farmacia\s+/gi, '').trim() };
+                    } else if (className.includes('direccion') && current.nombre) {
+                        current.direccion = text;
+                    } else if (className.includes('telefono') && current.nombre) {
+                        current.telefono = text;
                     }
                 });
-            }
+                if (current.nombre) farmacias.push(current);
 
-            if (found.length === 0) {
-                const lines = bodyText.split('\n').map(l => l.trim()).filter(l => l.length > 3);
-                for (let line of lines) {
-                    if (/[·,:\)]/.test(line) && /[A-ZÁÉÍÓÚÑ]/.test(line)) {
-                        let name = line.split(/·|,|:/)[0].trim().replace(/farmacia|turno|de|24\s*hs/gi, '').trim();
-                        const is24hs = line.includes('24') || (lines[lines.indexOf(line)+1]||'').includes('24');
-                        let address = line.split('·').slice(1).join(' · ');
-                        if (name && name.length < 50) found.push({name: name.toUpperCase(), address, is24hs});
-                    }
-                }
-            }
+                farmacias.forEach(f => {
+                    f.nombre = f.nombre.replace(/^(del?\s+|la\s+|el\s+)/i, '').trim();
+                    f.nombre = f.nombre.charAt(0).toUpperCase() + f.nombre.slice(1).toLowerCase();
+                });
 
-            found = found.filter((v,i,a) => a.findIndex(t => t.name === v.name) === i);
+                setTimeout(() => {
+                    if (farmacias.length > 0) {
+                        const schmidtIndex = farmacias.findIndex(f => 
+                            f.nombre.toLowerCase().includes('schmidt')
+                        );
 
-            setTimeout(() => {
-                if (found.length > 0) {
-                    const active24 = found.filter(f => f.is24hs);
-                    const list = active24.length > 0 ? active24 : found;
-                    if (list.length === 1) {
-                        const f = list[0];
-                        const label = f.is24hs ? 'ABIERTA 24HS' : 'DE TURNO HOY';
-                        bannerText.innerHTML = `${label}: <strong>${f.name}</strong> · ${f.address}`;
+                        if (schmidtIndex !== -1) {
+                            const f = farmacias[schmidtIndex];
+                            const tel = f.telefono ? ` · Tel: ${f.telefono}` : '';
+                            bannerText.innerHTML = `¡HOY TURNO 24HS! <strong>Farmacia Schmidt</strong> · ${f.direccion}${tel}`;
+                        } else if (farmacias.length === 1) {
+                            const f = farmacias[0];
+                            const tel = f.telefono ? ` · ${f.telefono}` : '';
+                            bannerText.innerHTML = `DE TURNO: <strong>${f.nombre}</strong> · ${f.direccion}${tel}`;
+                        } else {
+                            const names = farmacias.map(f => `<strong>${f.nombre}</strong>`).join(' · ');
+                            bannerText.innerHTML = `DE TURNO HOY: ${names}`;
+                        }
                     } else {
-                        const label = list[0].is24hs ? 'ABIERTAS 24HS' : 'DE TURNO HOY';
-                        const names = list.map(f => `<strong>${f.name}</strong>`).join(' · ');
-                        bannerText.innerHTML = `${label}: ${names}`;
+                        fallbackBanner(isOpen);
                     }
-                } else {
-                    fallbackBanner(isOpen);
-                }
+                    bannerContent.classList.add('visible');
+                }, 600);
+
+            } catch (err) {
+                console.log("Error cargando turnos:", err);
+                fallbackBanner(isOpen);
                 bannerContent.classList.add('visible');
-            }, 600);
+            }
         }
 
         function fallbackBanner(isOpen) {
             const bannerText = document.getElementById('banner-text');
-            const bannerContent = document.getElementById('banner-content');
-            const msg = isOpen ? 'Estamos ABIERTOS hasta las 20:30 hs' : 'Estamos CERRADOS · Consultá turnos por WhatsApp';
-            bannerText.innerHTML = `${msg}`;
-            bannerContent.classList.add('visible');
+            const msg = isOpen 
+                ? 'Estamos ABIERTOS hasta las 20:00 hs' 
+                : 'Estamos CERRADOS · Consultá turnos por WhatsApp';
+            bannerText.innerHTML = msg;
         }
 
         function logicFormWhatsApp() {
             const form = document.getElementById('pedidoForm');
+            if (!form) return;
             form.addEventListener('submit', e => {
                 e.preventDefault();
                 const nombre = document.getElementById('nombre').value.trim();
@@ -421,7 +446,7 @@
                 const mensaje = document.getElementById('mensaje').value.trim() || 'Consulta general';
 
                 const text = `¡Hola equipo de Farmacia Schmidt!\n\nNombre: *${nombre}*\nWhatsApp: *${celular}*\n\n${mensaje}\n\n¡Gracias!`;
-                const waUrl = `https://wa.me/541164264067?text=${encodeURIComponent(text)}`;
+                const waUrl = `https://api.whatsapp.com/send?phone=+541164264067&text=${encodeURIComponent(text)}`;
 
                 document.getElementById('waLink').href = waUrl;
                 document.getElementById('modalMsg').innerHTML = `¡Perfecto <strong>${nombre.split(' ')[0]}!</strong><br><br>Tu pedido está listo para enviar.<br><br><em>Si te atendimos bien, tu reseña nos ayuda a crecer</em>`;
@@ -432,6 +457,7 @@
 </body>
 </html>
 "commit"
+
 
 
 
