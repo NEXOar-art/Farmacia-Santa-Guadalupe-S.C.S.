@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Farmacia Patred - Av. Pres. Juan Domingo Perón 1507, Pilar. Turnos 24hs, atención personalizada y envíos a domicilio.">
-    <title>Farmacia Patred | Av. Pres. Juan Domingo Perón 1507 | Pilar</title>
+    <meta name="description" content="Farmacia Santa Guadalupe S.C.S. - Ruta Caamaño 1090, Villa Rosa, Pilar. Atención personalizada, turnos y envíos a domicilio.">
+    <title>Farmacia Santa Guadalupe S.C.S. | Ruta Caamaño 1090 | Villa Rosa</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -30,7 +30,20 @@
         .section-title { text-align: center; margin-bottom: 50px; }
         .section-title h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
 
-        /* BANNER TURNO */
+        /* NUEVO: BARRA DE FECHA Y HORA */
+        .datetime-bar {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 3000;
+        }
+
+        /* BANNER TURNO (ahora debajo de la fecha) */
         .smart-banner { 
             background: var(--primary-dark); 
             color: white; 
@@ -41,7 +54,7 @@
             font-size: 0.9rem; 
             font-weight: 500; 
             position: sticky; 
-            top: 0; 
+            top: 38px; /* ajustado por la barra de fecha */
             z-index: 2000; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.15); 
             padding: 10px 0; 
@@ -71,7 +84,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37,211,102,0); } 
         }
 
-        header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); position: sticky; top: 48px; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); position: sticky; top: 86px; /* ajustado: fecha 38px + banner 48px */ z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; height: 72px; }
         .logo { font-size: 1.3rem; font-weight: 800; color: var(--primary-dark); display: flex; align-items: center; gap: 8px; }
         nav ul { display: flex; gap: 25px; align-items: center; }
@@ -94,11 +107,27 @@
         .status-open .status-indicator { background: #22c55e; box-shadow: 0 0 0 2px #bbf7d0; }
         .status-closed .status-indicator { background: #ef4444; box-shadow: 0 0 0 2px #fecaca; }
 
-        .hero { position: relative; padding: 100px 0; min-height: 80vh; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); display: flex; align-items: center; overflow: hidden; }
+        /* HERO CON IMAGEN DE FONDO Y MOVIMIENTO LEVE */
+        .hero { 
+            position: relative; 
+            padding: 100px 0; 
+            min-height: 80vh; 
+            background: linear-gradient(135deg, rgba(240,249,255,0.85) 0%, rgba(224,242,254,0.85) 100%), url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1400&q=80&blur=20'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            align-items: center; 
+            overflow: hidden; 
+            animation: subtleZoom 30s ease-in-out infinite alternate; 
+        }
+        @keyframes subtleZoom {
+            0% { background-size: 100%; }
+            100% { background-size: 110%; }
+        }
         .hero-content { z-index: 2; max-width: 550px; }
         .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
         .hero p { font-size: 1.15rem; color: var(--text-light); margin-bottom: 30px; }
-        .hero-img { position: absolute; right: -50px; top: 50%; transform: translateY(-50%); width: 50%; height: 75%; object-fit: cover; border-radius: 20px; box-shadow: -20px 20px 60px rgba(0,0,0,0.1); z-index: 1; }
+        .hero-img { position: absolute; right: -50px; top: 50%; transform: translateY(-50%); width: 50%; height: 75%; object-fit: cover; border-radius: 20px; box-shadow: -20px 20px 60px rgba(0,0,0,0.1); z-index: 1; opacity: 0.9; }
 
         .services-grid, .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .card-style { background: white; padding: 35px 30px; border-radius: var(--radius); transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
@@ -137,11 +166,17 @@
             .form-wrapper { flex-direction: column; }
             .location-card { position: relative; top: 0; left: 0; transform: none; width: 100%; max-width: none; margin: 20px; }
             nav { display: none; }
-            .smart-banner { font-size: 0.82rem; flex-direction: column; padding: 12px 10px; line-height: 1.4; }
+            .smart-banner { font-size: 0.82rem; flex-direction: column; padding: 12px 10px; line-height: 1.4; top: 38px; }
+            header { top: 86px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- NUEVO: BARRA DE FECHA Y HORA EN VIVO -->
+    <div class="datetime-bar" id="datetime-bar">
+        Cargando fecha y hora...
+    </div>
 
     <!-- BANNER DE TURNO -->
     <div class="smart-banner">
@@ -157,7 +192,7 @@
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM10 17H8V13H4V11H8V7H10V11H14V7H16V11H20V13H16V17H14V13H10V17Z"/>
                 </svg>
-                Farmacia Patred
+                Farmacia Santa Guadalupe S.C.S.
             </div>
             <nav>
                 <ul>
@@ -178,10 +213,10 @@
                 <p>Envíos rápidos, atención profesional y todas las obras sociales. Hacé tu pedido online.</p>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
                     <a href="#contacto" class="btn btn-primary">Hacer Pedido</a>
-                    <a href="https://api.whatsapp.com/send?phone=+541149491600&text=Hola%20Farmacia%20Patred!!" target="_blank" class="btn btn-wsp">Consultar por WhatsApp</a>
+                    <a href="https://api.whatsapp.com/send?phone=+541127221210&text=%C2%A1%C2%A1Hola%20Farmacia%20Santa%20Guadalupe!!" target="_blank" class="btn btn-wsp">Consultar por WhatsApp</a>
                 </div>
             </div>
-            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800&q=80" alt="Farmacia Patred" class="hero-img">
+            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800&q=80" alt="Farmacia Santa Guadalupe S.C.S." class="hero-img">
         </div>
     </main>
 
@@ -232,7 +267,7 @@
                 </div>
                 <div class="card-style testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <span class="quote">"Muy buena ubicación en Pilar y precios competitivos en perfumería. Siempre me atienden con una sonrisa."</span>
+                    <span class="quote">"Muy buena ubicación en Villa Rosa y precios competitivos en perfumería. Siempre me atienden con una sonrisa."</span>
                     <span class="client-name">- Sofía Lerena</span>
                 </div>
             </div>
@@ -244,27 +279,25 @@
         <div class="container">
             <div class="section-title"><h2>Visítanos</h2></div>
             
-            <!-- Botón grande centrado encima del mapa -->
             <div style="text-align:center;margin-bottom:30px;">
-                <a href="https://maps.app.goo.gl/jjFPz2YLWKJG4dbD8" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:16px 40px;">
+                <a href="https://maps.app.goo.gl/4iEYuHU7CCkd7Yk17" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:16px 40px;">
                     Ir a la ubicación en Google Maps
                 </a>
             </div>
 
             <div class="location-wrapper">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.282!2d-58.7809656!3d-34.455412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9e1a4b5d4b5b%3A0x5a5b5d5e5f5a5b5d!2sFarmacia+Patred!5e0!3m2!1ses!2sar!4v1737228000000" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.123!2d-58.885123!3d-34.423456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc8f8e1a4b4d9%3A0x8e4b4d4f5a6b7c8d!2sFarmacia%20Santa%20Guadalupe%20S.C.S.!5e0!3m2!1ses!2sar!4v1730000000000" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="location-card">
-                    <h3 style="color:var(--primary);margin-bottom:15px">Farmacia Patred</h3>
+                    <h3 style="color:var(--primary);margin-bottom:15px">Farmacia Santa Guadalupe S.C.S.</h3>
                     <p style="margin-bottom:8px;font-weight:600;line-height:1.4">
-                        Av. Pres. Juan Domingo Perón 1507<br>
-                        <span style="font-weight:400;color:#64748b">Pilar, Buenos Aires</span>
+                        Ruta Caamaño 1090<br>
+                        <span style="font-weight:400;color:#64748b">Villa Rosa, Pilar, Buenos Aires</span>
                     </p>
                     <p style="margin-bottom:20px;font-size:0.9rem;color:#64748b">
-                        Lunes a viernes: 7:00 a 21:00 hs<br>
-                        Sábado: 8:00 a 20:00 hs<br>
-                        Domingo: Cerrado
+                        Horarios extendidos<br>
+                        Consultar por WhatsApp para confirmar
                     </p>
-                    <a href="https://maps.app.goo.gl/jjFPz2YLWKJG4dbD8" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center">
+                    <a href="https://maps.app.goo.gl/4iEYuHU7CCkd7Yk17" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center">
                         Cómo llegar ahora
                     </a>
                 </div>
@@ -310,12 +343,12 @@
 
     <footer>
         <div class="container">
-            <p>© 2025 Farmacia Patred. Todos los derechos reservados.</p>
+            <p>© 2026 Farmacia Santa Guadalupe S.C.S. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://api.whatsapp.com/send?phone=+541149491600&text=Hola%20Farmacia%20Patred!!" class="wsp-float" target="_blank" title="Chat WhatsApp">
+    <a href="https://api.whatsapp.com/send?phone=+541127221210&text=%C2%A1%C2%A1Hola%20Farmacia%20Santa%20Guadalupe!!" class="wsp-float" target="_blank" title="Chat WhatsApp">
         <svg width="30" height="30" fill="white" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.263c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
         </svg>
@@ -327,7 +360,7 @@
             <h3 style="color:var(--primary)">¡Todo listo!</h3>
             <p id="modalMsg" style="margin:15px 0;color:#64748b;line-height:1.5"></p>
             <a id="waLink" href="#" target="_blank" class="btn btn-wsp" style="width:100%">Abrir WhatsApp Ahora</a>
-            <a href="https://maps.app.goo.gl/jjFPz2YLWKJG4dbD8" target="_blank" class="btn btn-review" style="width:100%">
+            <a href="https://maps.app.goo.gl/4iEYuHU7CCkd7Yk17" target="_blank" class="btn btn-review" style="width:100%">
                 Dejar mi reseña en Google
             </a>
             <button onclick="document.getElementById('finalModal').style.display='none'" style="margin-top:20px;background:none;border:none;cursor:pointer;text-decoration:underline;color:#94a3b8">
@@ -341,7 +374,37 @@
             updateOpeningStatus();
             loadFarmaciasDeTurno();
             logicFormWhatsApp();
+            updateDateTime(); // Nueva función
+            setInterval(updateDateTime, 1000); // Actualiza cada segundo
         });
+
+        // NUEVA FUNCIÓN PARA FECHA Y HORA EN VIVO
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+            const formatter = new Intl.DateTimeFormat('es-AR', options);
+            const parts = formatter.formatToParts(now);
+            
+            const dayName = parts.find(p => p.type === 'weekday').value;
+            const day = parts.find(p => p.type === 'day').value;
+            const month = parts.find(p => p.type === 'month').value;
+            const year = parts.find(p => p.type === 'year').value;
+            const time = parts.find(p => p.type === 'hour').value + ':' + 
+                          parts.find(p => p.type === 'minute').value + ':' + 
+                          parts.find(p => p.type === 'second').value;
+
+            const text = `${dayName.charAt(0).toUpperCase() + dayName.slice(1)}, ${day} de ${month} de ${year} - ${time} hs`;
+            document.getElementById('datetime-bar').textContent = text;
+        }
 
         function updateOpeningStatus() {
             const now = new Date();
@@ -352,20 +415,10 @@
 
             let isOpen = false;
 
-            if (day === 0) { // Domingo: Cerrado
-                isOpen = false;
-            } else if (day === 6) { // Sábado
-                const openTime = 8 * 60;
-                const closeTime = 20 * 60;
-                if (current >= openTime && current < closeTime) {
-                    isOpen = true;
-                }
-            } else { // Lunes a Viernes
-                const openTime = 7 * 60;
-                const closeTime = 21 * 60;
-                if (current >= openTime && current < closeTime) {
-                    isOpen = true;
-                }
+            const openTime = 8 * 60 + 30;
+            const closeTime = 20 * 60 + 30;
+            if (current >= openTime && current < closeTime) {
+                isOpen = true;
             }
 
             document.getElementById('status-badge-container').innerHTML = isOpen
@@ -413,14 +466,14 @@
 
                 setTimeout(() => {
                     if (farmacias.length > 0) {
-                        const patredIndex = farmacias.findIndex(f => 
-                            f.nombre.toLowerCase().includes('patred')
+                        const guadalupeIndex = farmacias.findIndex(f => 
+                            f.nombre.toLowerCase().includes('guadalupe') || f.nombre.toLowerCase().includes('santa guadalupe')
                         );
 
-                        if (patredIndex !== -1) {
-                            const f = farmacias[patredIndex];
+                        if (guadalupeIndex !== -1) {
+                            const f = farmacias[guadalupeIndex];
                             const tel = f.telefono ? ` · Tel: ${f.telefono}` : '';
-                            bannerText.innerHTML = `¡HOY TURNO 24HS! <strong>Farmacia Patred</strong> · ${f.direccion}${tel}`;
+                            bannerText.innerHTML = `¡HOY TURNO 24HS! <strong>Farmacia Santa Guadalupe</strong> · ${f.direccion}${tel}`;
                         } else if (farmacias.length === 1) {
                             const f = farmacias[0];
                             const tel = f.telefono ? ` · ${f.telefono}` : '';
@@ -445,7 +498,7 @@
         function fallbackBanner(isOpen) {
             const bannerText = document.getElementById('banner-text');
             const msg = isOpen 
-                ? 'Estamos ABIERTOS hasta las 20:30 hs' 
+                ? 'Estamos ABIERTOS' 
                 : 'Estamos CERRADOS · Consultá turnos por WhatsApp';
             bannerText.innerHTML = msg;
         }
@@ -459,8 +512,8 @@
                 const celular = document.getElementById('celular').value.trim();
                 const mensaje = document.getElementById('mensaje').value.trim() || 'Consulta general';
 
-                const text = `¡Hola equipo de Farmacia Patred!\n\nNombre: *${nombre}*\nWhatsApp: *${celular}*\n\n${mensaje}\n\n¡Gracias!`;
-                const waUrl = `https://api.whatsapp.com/send?phone=+541149491600&text=${encodeURIComponent(text)}`;
+                const text = `¡Hola equipo de Farmacia Santa Guadalupe S.C.S.!\n\nNombre: *${nombre}*\nWhatsApp: *${celular}*\n\n${mensaje}\n\n¡Gracias!`;
+                const waUrl = `https://api.whatsapp.com/send?phone=+541127221210&text=${encodeURIComponent(text)}`;
 
                 document.getElementById('waLink').href = waUrl;
                 document.getElementById('modalMsg').innerHTML = `¡Perfecto <strong>${nombre.split(' ')[0]}!</strong><br><br>Tu pedido está listo para enviar.<br><br><em>Si te atendimos bien, tu reseña nos ayuda a crecer</em>`;
@@ -470,7 +523,8 @@
     </script>
 </body>
 </html>
-"commit"
+
+
 
 
 
